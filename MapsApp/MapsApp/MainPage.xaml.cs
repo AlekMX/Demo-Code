@@ -30,7 +30,6 @@ namespace MapsApp
 
         public MainPage()
         {
-
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
             geolocator = new Geolocator();
@@ -52,13 +51,14 @@ namespace MapsApp
             // this event is handled for you.
         }
 
+        /// <summary>
+        /// Obtiene la posición del dispositivo
+        /// </summary>
         private async void getGeoposition()
         {
             progressRibbon.Visibility = Windows.UI.Xaml.Visibility.Visible;
             ring.IsActive = true;
             Geoposition pos = await geolocator.GetGeopositionAsync();
-            
-            //position.Text = pos.CivicAddress.Country;
             
             map.Center = pos.Coordinate.Point;
             map.ZoomLevel = 17;
@@ -66,13 +66,18 @@ namespace MapsApp
             MapIcon icon = new MapIcon();
             icon.Location = pos.Coordinate.Point;
             icon.Title = "Nuevo Pin"; 
-            icon.NormalizedAnchorPoint = new Point(0.5, 1.0);
             map.MapElements.Add(icon);
+            //position.Text = pos.CivicAddress.Country; CivicAddres siempre regresa nulo en windows phone
             position.Text = await getAddress(pos.Coordinate.Point);
             ring.IsActive = false;
             progressRibbon.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Obtiene la dirección asociada a un Geopoint
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
         private async Task<string> getAddress(Geopoint point)
         {
             string address = "Sin dirección encontrada";

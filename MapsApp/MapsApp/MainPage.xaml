@@ -26,7 +26,7 @@
         <Grid Grid.Row="1">
             <Maps:MapControl
             Name="map" 
-            MapServiceToken=""
+            MapServiceToken="El token va aqui"
             />
             <StackPanel Name="progressRibbon" VerticalAlignment="Center" Background="#BF000000">
                 <ProgressRing Name="ring" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Foreground="{ThemeResource PhoneAccentBrush}" Margin="0,5,0,0"/>
