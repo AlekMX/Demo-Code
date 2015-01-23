@@ -61,11 +61,12 @@ namespace MapsApp
             Geoposition pos = await geolocator.GetGeopositionAsync();
             
             map.Center = pos.Coordinate.Point;
-            map.ZoomLevel = 17;
+            map.ZoomLevel = 20;
             map.LandmarksVisible = true;
             MapIcon icon = new MapIcon();
             icon.Location = pos.Coordinate.Point;
             icon.Title = "Nuevo Pin"; 
+            
             map.MapElements.Add(icon);
             //position.Text = pos.CivicAddress.Country; CivicAddres siempre regresa nulo en windows phone
             position.Text = await getAddress(pos.Coordinate.Point);
